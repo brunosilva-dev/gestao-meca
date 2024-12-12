@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.brunosilva.gestao_meca.modules.game.entities.CategoryEntity;
 import br.com.brunosilva.gestao_meca.modules.game.useCases.CreateCategoryUseCase;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/category")
@@ -18,7 +19,7 @@ public class CategoryController {
   private CreateCategoryUseCase createCategoryUseCase;
 
   @PostMapping("/")
-  public ResponseEntity<Object> create(@RequestBody CategoryEntity categoryEntity) {
+  public ResponseEntity<Object> create(@Valid @RequestBody CategoryEntity categoryEntity) {
     try {
       var result = this.createCategoryUseCase.execute(categoryEntity);
       return ResponseEntity.ok().body(result);

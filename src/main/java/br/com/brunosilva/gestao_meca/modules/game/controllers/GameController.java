@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.brunosilva.gestao_meca.exceptions.GameFoundException;
 import br.com.brunosilva.gestao_meca.modules.game.entities.GameEntity;
 import br.com.brunosilva.gestao_meca.modules.game.repositories.GameRepository;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/game")
@@ -49,7 +50,7 @@ public class GameController {
    * 
    */
   @PostMapping("/")
-  public List<GameEntity> create(@RequestBody List<GameEntity> gameEntities) {
+  public List<GameEntity> create(@Valid @RequestBody List<GameEntity> gameEntities) {
     logger.info("Recebendo jogo para criar: {}", gameEntities);
     System.out.println("Recebido: " + gameEntities);
     gameEntities.forEach(gameEntity -> {
